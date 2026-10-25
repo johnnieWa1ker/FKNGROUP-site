@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {cp,mkdtemp,readFile,writeFile,rm} from 'node:fs/promises';
+import {cp,mkdtemp,readFile,writeFile,rm,mkdir,symlink} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -37,6 +37,11 @@ test('dev server uses the updated generator for subsequent data changes', {timeo
   return /FKNGROUP: http:/.test(output);
  });
  const url=output.match(/http:\/\/127\.0\.0\.1:\d+\//)[0];
+ await mkdir(resolve(directory,'assets'));
+ await writeFile(resolve(directory,'assets/.env'),'private-test-value');
+ await symlink(resolve(directory,'data/company.json'),resolve(directory,'assets/leak.json'));
+ assert.equal((await fetch(new URL('assets/.env',url))).status,404);
+ assert.equal((await fetch(new URL('assets/leak.json',url))).status,404);
  const generator=resolve(directory,'scripts/render-html.mjs');
  const source=await readFile(generator,'utf8');
  assert.ok(source.includes('INDEPENDENT IDEAS. SHARED DNA.'));

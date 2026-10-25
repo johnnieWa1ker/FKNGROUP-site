@@ -36,8 +36,9 @@
   "privacy": "Integritet",
   "terms": "Användarvillkor",
   "privacyBody": "Webbplatsen har ingen registrering, kontaktformulär, reklamspårning eller analys. Ditt språkval sparas i webbläsaren. Webbhotellet kan behandla tekniska åtkomstuppgifter för att leverera sidan. Appar och produktwebbplatser har egna integritetspolicyer. E-post och kontaktuppgifter används för att besvara frågor. Kontakta operatören via företagsuppgifterna för integritetsärenden.",
-  "termsBody": "Webbplatsen presenterar FKNCOMPANY och dess programvaruprojekt. Planerade produkter och plattformar kan ändras; inget lanseringsdatum utlovas. Webbplatsen säljer inget och tar inte emot betalningar. Köp, prenumerationer och användning av appar omfattas av respektive produkts och plattforms villkor. Externa webbplatser har egna villkor och integritetspolicyer.",
+  "termsBody": "Webbplatsen presenterar FKNGROUP och dess programvaruprojekt. Planerade produkter och plattformar kan ändras; inget lanseringsdatum utlovas. Webbplatsen säljer inget och tar inte emot betalningar. Köp, prenumerationer och användning av appar omfattas av respektive produkts och plattforms villkor. Externa webbplatser har egna villkor och integritetspolicyer.",
   "available": "Tillgänglig på App Store",
   "releaseNote": "iOS först. Mer kommer.",
-  "home": "Hem"
+  "home": "Hem",
+  "noResults": "Inga språk hittades"
 }

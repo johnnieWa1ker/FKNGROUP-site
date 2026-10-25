@@ -36,8 +36,9 @@
   "privacy": "Quyền riêng tư",
   "terms": "Điều khoản sử dụng",
   "privacyBody": "Trang này không có đăng ký tài khoản, biểu mẫu, trình theo dõi quảng cáo hay công cụ phân tích. Ngôn ngữ đã chọn được lưu trong trình duyệt. Nhà cung cấp lưu trữ có thể xử lý dữ liệu truy cập kỹ thuật để phục vụ trang. Ứng dụng và trang sản phẩm có chính sách riêng. Email và thông tin liên hệ được dùng để trả lời yêu cầu. Với vấn đề quyền riêng tư, hãy liên hệ đơn vị vận hành qua thông tin công ty.",
-  "termsBody": "Trang này giới thiệu FKNCOMPANY và các dự án phần mềm. Sản phẩm và nền tảng dự kiến có thể thay đổi; không cam kết ngày phát hành. Trang không bán sản phẩm hoặc nhận thanh toán. Việc mua, đăng ký và sử dụng ứng dụng tuân theo điều khoản của sản phẩm và nền tảng phân phối tương ứng. Trang bên ngoài có điều khoản và chính sách riêng.",
+  "termsBody": "Trang này giới thiệu FKNGROUP và các dự án phần mềm. Sản phẩm và nền tảng dự kiến có thể thay đổi; không cam kết ngày phát hành. Trang không bán sản phẩm hoặc nhận thanh toán. Việc mua, đăng ký và sử dụng ứng dụng tuân theo điều khoản của sản phẩm và nền tảng phân phối tương ứng. Trang bên ngoài có điều khoản và chính sách riêng.",
   "available": "Có trên App Store",
   "releaseNote": "iOS trước tiên. Sẽ còn nhiều hơn nữa.",
-  "home": "Trang chủ"
+  "home": "Trang chủ",
+  "noResults": "Không tìm thấy ngôn ngữ"
 }

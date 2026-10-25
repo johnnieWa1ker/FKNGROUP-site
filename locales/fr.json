@@ -36,8 +36,9 @@
   "privacy": "Confidentialité",
   "terms": "Conditions d’utilisation",
   "privacyBody": "Ce site ne comporte ni inscription, ni formulaire de contact, ni traceur publicitaire, ni outil d’analyse. La langue choisie est enregistrée dans votre navigateur. L’hébergeur peut traiter des données techniques d’accès pour fournir le site. Les applications et sites produits ont leurs propres politiques de confidentialité. Vos e-mails et coordonnées servent à répondre à vos demandes. Pour toute question de confidentialité, contactez l’exploitant via les informations de l’entreprise.",
-  "termsBody": "Ce site présente FKNCOMPANY et ses projets logiciels. Les produits et plateformes prévus peuvent évoluer ; aucune date de sortie n’est promise. Le site ne vend rien et n’accepte aucun paiement. Les achats, abonnements et usages des applications sont soumis aux conditions du produit et de la plateforme concernés. Les sites externes ont leurs propres conditions et politiques de confidentialité.",
+  "termsBody": "Ce site présente FKNGROUP et ses projets logiciels. Les produits et plateformes prévus peuvent évoluer ; aucune date de sortie n’est promise. Le site ne vend rien et n’accepte aucun paiement. Les achats, abonnements et usages des applications sont soumis aux conditions du produit et de la plateforme concernés. Les sites externes ont leurs propres conditions et politiques de confidentialité.",
   "available": "Disponible sur l’App Store",
   "releaseNote": "iOS d’abord. La suite arrive.",
-  "home": "Accueil"
+  "home": "Accueil",
+  "noResults": "Aucune langue trouvée"
 }

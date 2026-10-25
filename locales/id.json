@@ -36,8 +36,9 @@
   "privacy": "Privasi",
   "terms": "Ketentuan penggunaan",
   "privacyBody": "Situs ini tidak memiliki pendaftaran, formulir kontak, pelacak iklan, atau analitik. Bahasa pilihan disimpan di browser. Penyedia hosting dapat memproses data akses teknis untuk menyediakan situs. Aplikasi dan situs produk memiliki kebijakan privasi masing-masing. Email dan informasi kontak digunakan untuk menjawab pertanyaan. Untuk permintaan privasi, hubungi pengelola melalui informasi perusahaan.",
-  "termsBody": "Situs ini memperkenalkan FKNCOMPANY dan proyek perangkat lunaknya. Produk dan platform yang direncanakan dapat berubah; tidak ada tanggal rilis yang dijanjikan. Situs tidak menjual produk atau menerima pembayaran. Pembelian, langganan, dan penggunaan aplikasi tunduk pada ketentuan produk serta platform terkait. Situs eksternal memiliki ketentuan dan kebijakan privasi sendiri.",
+  "termsBody": "Situs ini memperkenalkan FKNGROUP dan proyek perangkat lunaknya. Produk dan platform yang direncanakan dapat berubah; tidak ada tanggal rilis yang dijanjikan. Situs tidak menjual produk atau menerima pembayaran. Pembelian, langganan, dan penggunaan aplikasi tunduk pada ketentuan produk serta platform terkait. Situs eksternal memiliki ketentuan dan kebijakan privasi sendiri.",
   "available": "Tersedia di App Store",
   "releaseNote": "iOS terlebih dahulu. Lainnya menyusul.",
-  "home": "Beranda"
+  "home": "Beranda",
+  "noResults": "Bahasa tidak ditemukan"
 }

@@ -36,8 +36,9 @@
   "privacy": "Privatliv",
   "terms": "Brugsvilkår",
   "privacyBody": "Hjemmesiden har ingen registrering, kontaktformularer, reklamesporing eller analyseværktøjer. Dit sprogvalg gemmes i browseren. Hostingudbyderen kan behandle tekniske adgangsdata for at levere siden. Apps og produktsider har egne privatlivspolitikker. E-mails og kontaktoplysninger bruges til at besvare henvendelser. Kontakt operatøren via virksomhedsoplysningerne ved spørgsmål om privatliv.",
-  "termsBody": "Hjemmesiden præsenterer FKNCOMPANY og dens softwareprojekter. Planlagte produkter og platforme kan ændres; der loves ingen udgivelsesdato. Siden sælger ikke produkter og modtager ikke betalinger. Køb, abonnementer og brug af apps er underlagt produktets og platformens vilkår. Eksterne sider har egne vilkår og privatlivspolitikker.",
+  "termsBody": "Hjemmesiden præsenterer FKNGROUP og dens softwareprojekter. Planlagte produkter og platforme kan ændres; der loves ingen udgivelsesdato. Siden sælger ikke produkter og modtager ikke betalinger. Køb, abonnementer og brug af apps er underlagt produktets og platformens vilkår. Eksterne sider har egne vilkår og privatlivspolitikker.",
   "available": "Tilgængelig i App Store",
   "releaseNote": "iOS først. Mere følger.",
-  "home": "Forside"
+  "home": "Forside",
+  "noResults": "Ingen sprog fundet"
 }

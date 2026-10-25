@@ -36,8 +36,9 @@
   "privacy": "Privacidad",
   "terms": "Condiciones de uso",
   "privacyBody": "Este sitio no tiene registro, formularios, rastreadores publicitarios ni analítica. El idioma seleccionado se guarda en tu navegador. El proveedor de alojamiento puede procesar datos técnicos de acceso para servir el sitio. Las apps y los sitios de productos tienen sus propias políticas de privacidad. Los mensajes y datos de contacto enviados por correo se usan para responder a las consultas. Para solicitudes de privacidad, contacta al operador mediante los datos de la empresa.",
-  "termsBody": "Este sitio presenta FKNCOMPANY y sus proyectos de software. Los productos y plataformas previstos pueden cambiar; no se promete una fecha de lanzamiento. El sitio no vende productos ni acepta pagos. Las compras, suscripciones y el uso de apps se rigen por las condiciones del producto y la plataforma correspondientes. Los sitios externos tienen sus propias condiciones y políticas de privacidad.",
+  "termsBody": "Este sitio presenta FKNGROUP y sus proyectos de software. Los productos y plataformas previstos pueden cambiar; no se promete una fecha de lanzamiento. El sitio no vende productos ni acepta pagos. Las compras, suscripciones y el uso de apps se rigen por las condiciones del producto y la plataforma correspondientes. Los sitios externos tienen sus propias condiciones y políticas de privacidad.",
   "available": "Disponible en el App Store",
   "releaseNote": "Primero iOS. Pronto, más.",
-  "home": "Inicio"
+  "home": "Inicio",
+  "noResults": "No se encontraron idiomas"
 }

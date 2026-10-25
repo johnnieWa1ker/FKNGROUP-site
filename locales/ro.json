@@ -36,8 +36,9 @@
   "privacy": "Confidențialitate",
   "terms": "Condiții de utilizare",
   "privacyBody": "Site-ul nu are înregistrare, formulare, urmărire publicitară sau analiză. Limba aleasă se salvează în browser. Furnizorul de găzduire poate prelucra date tehnice de acces pentru funcționarea site-ului. Aplicațiile și site-urile produselor au politici proprii de confidențialitate. Mesajele și datele de contact primite prin e-mail sunt folosite pentru a răspunde solicitărilor. Pentru cereri privind confidențialitatea, contactați operatorul prin datele companiei.",
-  "termsBody": "Site-ul prezintă FKNCOMPANY și proiectele sale software. Produsele și platformele planificate se pot schimba; nu este promisă o dată de lansare. Site-ul nu vinde produse și nu acceptă plăți. Achizițiile, abonamentele și utilizarea aplicațiilor sunt supuse condițiilor produsului și platformei respective. Site-urile externe au propriile condiții și politici de confidențialitate.",
+  "termsBody": "Site-ul prezintă FKNGROUP și proiectele sale software. Produsele și platformele planificate se pot schimba; nu este promisă o dată de lansare. Site-ul nu vinde produse și nu acceptă plăți. Achizițiile, abonamentele și utilizarea aplicațiilor sunt supuse condițiilor produsului și platformei respective. Site-urile externe au propriile condiții și politici de confidențialitate.",
   "available": "Disponibil în App Store",
   "releaseNote": "Mai întâi iOS. Urmează mai mult.",
-  "home": "Acasă"
+  "home": "Acasă",
+  "noResults": "Nu s-au găsit limbi"
 }

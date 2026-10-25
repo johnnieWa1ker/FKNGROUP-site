@@ -1,19 +1,19 @@
 import {createServer} from 'node:http';
-import {readFile,stat} from 'node:fs/promises';
+import {readFile,stat,realpath} from 'node:fs/promises';
 import {watch} from 'node:fs';
 import {resolve,extname} from 'node:path';
 import {publicPath} from './server-path.mjs';
 import {fileURLToPath} from 'node:url';
 import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
-const root=fileURLToPath(new URL('..',import.meta.url));
+const root=await realpath(fileURLToPath(new URL('..',import.meta.url)));
 const runFile=promisify(execFile);
 // Each render loads the current generator and its dependencies from disk.
 const renderHTML=()=>runFile(process.execPath,[resolve(root,'scripts/render-html.mjs')]);
 await renderHTML();let revision=0,queue=Promise.resolve();
 const watcher=watch(root,{recursive:true},(_,filename)=>{
  if(!filename||/^(\.git|dist|node_modules)/.test(filename))return;
- if(filename==='data/company.json'||filename.startsWith('locales/')||filename.startsWith('scripts/render-html')||filename==='i18n.js')queue=queue.then(()=>renderHTML()).then(()=>revision++).catch(console.error);
+ if(filename==='data/company.json'||filename.startsWith('locales/')||(filename.startsWith('scripts/render-html')||filename==='scripts/legal-content.mjs')||filename==='i18n.js')queue=queue.then(()=>renderHTML()).then(()=>revision++).catch(console.error);
  else revision++;
 });
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml'};
@@ -28,6 +28,8 @@ const server=createServer(async(req,res)=>{
    if(!path.endsWith('/')){res.writeHead(302,{Location:`${path}/${new URL(req.url,'http://localhost').search}`});return res.end();}
    target=resolve(target,'index.html');
   }
+  // A public path must not become a read of a private file through a symlink.
+  if(await realpath(target)!==target){res.writeHead(404);return res.end('Not found');}
   let body=await readFile(target);if(extname(target)==='.html')body=body.toString().replace('</body>','<script type="module" src="/__reload.js"></script></body>');
   res.setHeader('Content-Type',types[extname(target)]||'application/octet-stream');res.end(body);
  }catch{res.writeHead(404);res.end('Not found');}

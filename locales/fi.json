@@ -36,8 +36,9 @@
   "privacy": "Tietosuoja",
   "terms": "Käyttöehdot",
   "privacyBody": "Sivustolla ei ole rekisteröitymistä, yhteydenottolomakkeita, mainosseurantaa tai analytiikkaa. Kielivalinta tallennetaan selaimeen. Hostingpalvelu voi käsitellä teknisiä käyttötietoja sivuston toimittamiseksi. Sovelluksilla ja tuotesivustoilla on omat tietosuojakäytäntönsä. Sähköposteja ja yhteystietoja käytetään kyselyihin vastaamiseen. Tietosuojapyynnöt voi osoittaa ylläpitäjälle yrityksen yhteystietojen kautta.",
-  "termsBody": "Sivusto esittelee FKNCOMPANYn ja sen ohjelmistohankkeet. Suunnitellut tuotteet ja alustat voivat muuttua; julkaisupäivää ei luvata. Sivusto ei myy tuotteita eikä vastaanota maksuja. Sovellusostoksiin, tilauksiin ja käyttöön sovelletaan kyseisen tuotteen ja jakelualustan ehtoja. Ulkoisilla sivustoilla on omat ehdot ja tietosuojakäytännöt.",
+  "termsBody": "Sivusto esittelee FKNGROUPn ja sen ohjelmistohankkeet. Suunnitellut tuotteet ja alustat voivat muuttua; julkaisupäivää ei luvata. Sivusto ei myy tuotteita eikä vastaanota maksuja. Sovellusostoksiin, tilauksiin ja käyttöön sovelletaan kyseisen tuotteen ja jakelualustan ehtoja. Ulkoisilla sivustoilla on omat ehdot ja tietosuojakäytännöt.",
   "available": "Saatavilla App Storessa",
   "releaseNote": "Ensin iOS. Lisää on tulossa.",
-  "home": "Etusivu"
+  "home": "Etusivu",
+  "noResults": "Kieliä ei löytynyt"
 }

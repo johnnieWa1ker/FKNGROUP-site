@@ -7,7 +7,7 @@
   "email": "support@fkngroup.pro",
   "siteUrl": "https://fkngroup.pro/",
   "detailsConfirmed": true,
-  "privacyConfirmed": true,
+  "privacyConfirmed": false,
   "products": {
     "fkngym": {
       "url": "https://fkngym.com/",
@@ -19,5 +19,9 @@
       "appStoreUrl": null,
       "status": "development"
     }
+  },
+  "georgian": {
+    "legalForm": "შეზღუდული პასუხისმგებლობის საზოგადოება",
+    "legalAddress": "საქართველო, ბათუმი, შალვა ნუცუბიძის ქუჩა, N 1, ბინა 3"
   }
 }

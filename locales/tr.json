@@ -36,8 +36,9 @@
   "privacy": "Gizlilik bildirimi",
   "terms": "Kullanım koşulları",
   "privacyBody": "Bu sitede üyelik, iletişim formu, reklam izleyicisi veya analiz aracı yoktur. Dil tercihiniz tarayıcınıza kaydedilir. Barındırma sağlayıcısı siteyi sunmak için teknik erişim verilerini işleyebilir. Uygulamaların ve ürün sitelerinin ayrı gizlilik politikaları vardır. E-posta mesajları ve iletişim bilgileri sorularınıza yanıt vermek için kullanılır. Gizlilik talepleri için şirket bilgilerinden site işletmecisine ulaşın.",
-  "termsBody": "Bu site FKNCOMPANY’yi ve yazılım projelerini tanıtır. Planlanan ürünler ve platformlar değişebilir; çıkış tarihi taahhüt edilmez. Site ürün satmaz ve ödeme almaz. Uygulama satın alımları, abonelikler ve kullanım ilgili ürünün ve dağıtım platformunun koşullarına tabidir. Harici sitelerin kendi koşulları ve gizlilik politikaları vardır.",
+  "termsBody": "Bu site FKNGROUP’yi ve yazılım projelerini tanıtır. Planlanan ürünler ve platformlar değişebilir; çıkış tarihi taahhüt edilmez. Site ürün satmaz ve ödeme almaz. Uygulama satın alımları, abonelikler ve kullanım ilgili ürünün ve dağıtım platformunun koşullarına tabidir. Harici sitelerin kendi koşulları ve gizlilik politikaları vardır.",
   "available": "App Store’da mevcut",
   "releaseNote": "Önce iOS. Devamı gelecek.",
-  "home": "Ana sayfa"
+  "home": "Ana sayfa",
+  "noResults": "Dil bulunamadı"
 }

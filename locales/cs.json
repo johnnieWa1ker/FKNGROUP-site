@@ -36,8 +36,9 @@
   "privacy": "Ochrana soukromí",
   "terms": "Podmínky použití",
   "privacyBody": "Web nemá registraci, formuláře, reklamní sledování ani analytiku. Zvolený jazyk ukládá do prohlížeče. Poskytovatel hostingu může zpracovávat technické údaje o přístupu pro provoz webu. Aplikace a produktové weby mají vlastní zásady soukromí. E-maily a kontaktní údaje používáme k odpovědím na dotazy. Žádosti týkající se soukromí směřujte provozovateli přes údaje společnosti.",
-  "termsBody": "Web představuje FKNCOMPANY a její softwarové projekty. Plánované produkty a platformy se mohou změnit; datum vydání není slíbeno. Web neprodává produkty ani nepřijímá platby. Nákupy, předplatné a používání aplikací se řídí podmínkami daného produktu a distribuční platformy. Externí weby mají vlastní podmínky a zásady soukromí.",
+  "termsBody": "Web představuje FKNGROUP a její softwarové projekty. Plánované produkty a platformy se mohou změnit; datum vydání není slíbeno. Web neprodává produkty ani nepřijímá platby. Nákupy, předplatné a používání aplikací se řídí podmínkami daného produktu a distribuční platformy. Externí weby mají vlastní podmínky a zásady soukromí.",
   "available": "Dostupné v App Store",
   "releaseNote": "Nejprve iOS. Další přijde.",
-  "home": "Domů"
+  "home": "Domů",
+  "noResults": "Žádné jazyky nenalezeny"
 }

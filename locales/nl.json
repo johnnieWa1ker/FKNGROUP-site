@@ -36,8 +36,9 @@
   "privacy": "Privacyverklaring",
   "terms": "Gebruiksvoorwaarden",
   "privacyBody": "Deze website heeft geen registratie, formulieren, advertentietrackers of analytics. De gekozen taal wordt in je browser bewaard. De hostingprovider kan technische toegangsgegevens verwerken om de site te leveren. Apps en productwebsites hebben eigen privacyregels. E-mails en contactgegevens gebruiken we om vragen te beantwoorden. Neem voor privacyvragen contact op met de beheerder via de bedrijfsgegevens.",
-  "termsBody": "Deze website presenteert FKNCOMPANY en zijn softwareprojecten. Geplande producten en platforms kunnen wijzigen; er is geen toegezegde releasedatum. De site verkoopt niets en accepteert geen betalingen. Voor appaankopen, abonnementen en gebruik gelden de voorwaarden van het product en het distributieplatform. Externe sites hebben eigen voorwaarden en privacyregels.",
+  "termsBody": "Deze website presenteert FKNGROUP en zijn softwareprojecten. Geplande producten en platforms kunnen wijzigen; er is geen toegezegde releasedatum. De site verkoopt niets en accepteert geen betalingen. Voor appaankopen, abonnementen en gebruik gelden de voorwaarden van het product en het distributieplatform. Externe sites hebben eigen voorwaarden en privacyregels.",
   "available": "Beschikbaar in de App Store",
   "releaseNote": "Eerst iOS. Meer volgt.",
-  "home": "Home"
+  "home": "Home",
+  "noResults": "Geen talen gevonden"
 }

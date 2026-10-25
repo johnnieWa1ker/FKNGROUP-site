@@ -36,8 +36,9 @@
   "privacy": "Datenschutzhinweis",
   "terms": "Nutzungsbedingungen",
   "privacyBody": "Diese Website hat keine Registrierung, Kontaktformulare, Werbetracker oder Analysedienste. Die gewählte Sprache wird im Browser gespeichert. Der Hostinganbieter kann technische Zugriffsdaten zur Bereitstellung der Website verarbeiten. Für Apps und Produktwebsites gelten eigene Datenschutzrichtlinien. E-Mails und Kontaktdaten werden zur Beantwortung von Anfragen verwendet. Datenschutzanfragen richten Sie über die Unternehmensdaten an den Betreiber.",
-  "termsBody": "Diese Website stellt FKNCOMPANY und seine Softwareprojekte vor. Geplante Produkte und Plattformen können sich ändern; ein Veröffentlichungsdatum wird nicht zugesagt. Hier werden keine Produkte verkauft oder Zahlungen angenommen. Für App-Käufe, Abonnements und Nutzung gelten die Bedingungen des jeweiligen Produkts und der Vertriebsplattform. Externe Websites haben eigene Bedingungen und Datenschutzrichtlinien.",
+  "termsBody": "Diese Website stellt FKNGROUP und seine Softwareprojekte vor. Geplante Produkte und Plattformen können sich ändern; ein Veröffentlichungsdatum wird nicht zugesagt. Hier werden keine Produkte verkauft oder Zahlungen angenommen. Für App-Käufe, Abonnements und Nutzung gelten die Bedingungen des jeweiligen Produkts und der Vertriebsplattform. Externe Websites haben eigene Bedingungen und Datenschutzrichtlinien.",
   "available": "Im App Store verfügbar",
   "releaseNote": "iOS zuerst. Mehr folgt.",
-  "home": "Startseite"
+  "home": "Startseite",
+  "noResults": "Keine Sprachen gefunden"
 }

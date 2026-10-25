@@ -68,3 +68,53 @@ button:focus-visible { outline: 3px solid #566d1d; outline-offset: 4px; }
 .visual-center { inset: 39% 15%; letter-spacing: -2px; }
 .visual-center > .wordmark-name { font-size: clamp(25px,3.2vw,43px); letter-spacing: -2px; margin: 0; }
 @media (max-width: 760px) { .visual-center > .wordmark-name { font-size: clamp(24px,6.4vw,34px); } }
+
+/* Review: readable supporting text and comfortable keyboard/touch targets. */
+nav a, .footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
+nav a, .contact-link, .footer-links { font-size: 13px; }
+.eyebrow, .tag, .status, .platforms, .upcoming-label, .copyright { font-size: 12px; }
+.product-number { font-size: 11px; direction: ltr; unicode-bidi: isolate; }
+.hero-description, .product-bottom p, .company-section p:not(.eyebrow) { font-size: 16px; }
+.section-aside, .upcoming-intro p, dt, dd, .contact-banner p { font-size: 14px; }
+.button, .text-link { font-size: 14px; min-height: 44px; align-items: center; }
+.company-details a { text-decoration: underline; text-underline-offset: 4px; }
+.contact-banner p { overflow-wrap: anywhere; }
+.contact-banner > div, .hero-copy, .about-copy, .company-section > div { min-width: 0; }
+.product { display: flex; flex-direction: column; }
+.product-bottom { flex: 1; }
+.product-bottom > div { flex: 1; }
+.picker-empty { font-size: 14px; color: var(--muted); padding: 12px 0; }
+.document-languages { flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
+.document-languages a { padding: 8px 18px; border: 1px solid var(--line); border-radius: 999px; }
+.legal-copy { scroll-margin-top: 24px; border-top: 1px solid var(--line); padding-top: 32px; margin-top: 40px; }
+.legal-copy h2 { font-size: 32px; letter-spacing: -.025em; }
+.document-date { color: var(--muted); font-size: 13px; margin-top: 12px; }
+.legal-section { margin-top: 28px; max-width: 68ch; }
+.legal-section h3 { font-size: 20px; font-weight: 600; letter-spacing: -.015em; line-height: 1.4; margin-bottom: 10px; }
+.legal-section p { font-size: 16px; line-height: 1.75; }
+.provider-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 28px; }
+.provider-links a { text-decoration: underline; text-underline-offset: 4px; }
+[lang=ka] .legal-section h3 { letter-spacing: 0; }
+[dir=rtl] .legal-copy h2, [dir=rtl] .legal-copy h3 { letter-spacing: 0; }
+@media (max-width: 760px) {
+  .site-header nav { flex-wrap: wrap; gap: 4px 14px; }
+  .hero { gap: 32px; }
+  .hero-visual { width: 74%; max-width: 310px; }
+  .platforms { flex-wrap: wrap; }
+  .upcoming-label { flex-wrap: wrap; }
+  .footer-links { gap: 8px 20px; }
+  .contact-banner { align-items: flex-start; }
+  .contact-banner h2 { font-size: clamp(26px,7vw,36px); overflow-wrap: anywhere; }
+}
+@media (max-width: 380px) {
+  .company-details > div, .about-facts > div { grid-template-columns: 1fr; gap: 6px; }
+  .header-actions { margin-inline-start: auto; }
+  .hero h1 { font-size: 42px; overflow-wrap: anywhere; }
+}
+@media print {
+  .site-header, footer, .skip-link, .document-languages, .picker-panel { display: none; }
+  body { background: white; color: black; }
+  .document { max-width: none; padding: 0; }
+  .legal-section { break-inside: avoid; }
+  a { text-decoration: underline; }
+}

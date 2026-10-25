@@ -51,9 +51,11 @@ npm run build
 
 - `scripts/render-html.mjs` — source markup for all four pages. Generated HTML is
   committed in `index.html`, `company/`, `privacy/`, and `terms/`.
+- `scripts/legal-content.mjs` — structured English and Georgian legal document drafts,
+  embedded without requiring JavaScript; marketing summaries remain in all 29 locales.
 - `styles.css` — responsive layout, RTL support, and reduced-motion styles.
 - `script.js`, `i18n.js` — language selection, dictionary loading, and locale matching.
-- `locales/` — 29 translation dictionaries with 41 matching keys each.
+- `locales/` — 29 translation dictionaries with 42 matching keys each.
 - `data/company.json` — company details, domain, and product availability. The JSON
   file is not copied to `dist/`; public details are embedded in generated HTML.
 - `assets/` — FKNGYM icon and mascot. The hero uses an Icon Composer export; the
@@ -97,13 +99,19 @@ Update `data/company.json` before publication:
 - Set each product's `status` to `development` or `available`. Available products
   require a verified `appStoreUrl` on `apps.apple.com`. The optional `url` points
   to the product website.
+- Keep `georgian.legalForm` and `georgian.legalAddress` consistent with the registration
+  extract and the English fields; the current Georgian wording needs native legal review.
 - Set `detailsConfirmed` to `true` after checking company details and product status.
 - Set `privacyConfirmed` to `true` after reviewing the actual email and hosting
   practices. Update every translation first if further disclosures are needed.
 
-The configured business email is `support@fkngroup.pro`. Company details and the
-website privacy notice have been reviewed for the GitHub Pages and iCloud Mail
-setup, and both release confirmation flags are enabled. FKNGYM and FKNCOIN remain
+The configured business email is `support@fkngroup.pro`. GitHub Pages and iCloud Mail
+were confirmed by the owner during the 25 October 2026 review. `privacyConfirmed`
+is currently false: the revised privacy notice is a draft until actual retention
+practices and international-transfer safeguards are documented and checked.
+Direct release builds deliberately fail until that review is complete. CI runs
+tests and a preview build, reports the publication hold, and skips deployment. See
+`security_best_practices_report.md` for the remaining work. FKNGYM and FKNCOIN remain
 marked as in development. Review these settings when the business details,
 product availability, or data handling change.
 
@@ -138,8 +146,9 @@ and should not be independently translated or renamed in dictionaries.
 ## GitHub Pages
 
 The **Pages build deployment** workflow follows the same deployment structure as
-FKNGYM-site: every push to `main` runs tests, builds the website from committed
-public data, uploads `dist/`, and deploys it to GitHub Pages. It also supports
+FKNGYM-site: every push to `main` runs tests and builds the website from committed public data.
+When both confirmation flags are true, it uploads `dist/` and deploys to GitHub
+Pages. Otherwise it builds a preview and explicitly skips upload and deployment. It also supports
 manual runs on `main`. This repository uses `npm run build:release` to validate
 company data and generate the sitemap and indexing rules before deployment.
 No publication variable or private app checkout is required.

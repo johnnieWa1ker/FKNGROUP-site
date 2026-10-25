@@ -1,4 +1,4 @@
-import {readFile,readdir} from 'node:fs/promises';
+import {readFile,readdir,lstat} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {root} from './render-html.mjs';
 import {nativeLanguageNames} from '../i18n.js';
@@ -7,20 +7,30 @@ export function validateCompany(c,{release=false}={}) {
   if(!['development','available'].includes(product.status))throw new Error('Unknown product status');
   if(product.status==='available'&&!product.appStoreUrl)throw new Error('Available products require an App Store URL');
   for(const value of [product.url,product.appStoreUrl].filter(Boolean)) {
-   const url=new URL(value);if(url.protocol!=='https:')throw new Error('Product URLs must use HTTPS');
+   const url=new URL(value);if(url.protocol!=='https:'||url.username||url.password)throw new Error('Product URLs must use HTTPS');
   }
   if(product.appStoreUrl&&new URL(product.appStoreUrl).hostname!=='apps.apple.com')throw new Error('Use an official App Store URL');
  }
  if(c.email&&!/^[^\s<>"@]+@[^\s<>"@]+\.[^\s<>"@]+$/.test(c.email))throw new Error('Invalid company email');
- if(c.siteUrl) {const url=new URL(c.siteUrl);if(url.protocol!=='https:'||url.search||url.hash)throw new Error('siteUrl must be an HTTPS base URL');}
+ if(c.siteUrl) {const url=new URL(c.siteUrl);if(url.protocol!=='https:'||url.username||url.password||url.search||url.hash)throw new Error('siteUrl must be an HTTPS base URL');}
  if(release) {
   const fields=['legalName','legalForm','identificationNumber','legalAddress','email','siteUrl'];
   const missing=fields.filter(key=>typeof c[key]!=='string'||!c[key].trim());
   if(missing.length)throw new Error(`Release blocked: confirm company fields: ${missing.join(', ')}`);
-  if(!c.detailsConfirmed||!c.privacyConfirmed)throw new Error('Release blocked: company details, product statuses and privacy handling must be confirmed');
+  if(!c.georgian?.legalForm?.trim()||!c.georgian?.legalAddress?.trim())throw new Error('Release blocked: Georgian company details are required');
+  if(c.detailsConfirmed!==true||c.privacyConfirmed!==true)throw new Error('Release blocked: company details, product statuses and privacy handling must be confirmed');
+ }
+}
+export async function validatePublicTree(directory) {
+ for(const name of await readdir(directory)) {
+  const path=resolve(directory,name);
+  const info=await lstat(path);
+  if(name.startsWith('.')||info.isSymbolicLink())throw new Error(`Unsafe public asset: ${path}`);
+  if(info.isDirectory())await validatePublicTree(path);
  }
 }
 export async function validateSite(options={}) {
+ await validatePublicTree(resolve(root,'assets'));
  const en=JSON.parse(await readFile(resolve(root,'locales/en.json'),'utf8'));
  const keys=Object.keys(en).sort();
  const files=(await readdir(resolve(root,'locales'))).filter(file=>file.endsWith('.json')).sort();

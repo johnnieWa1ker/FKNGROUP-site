@@ -35,6 +35,11 @@ function enhancePicker(select) {
   const search = panel.querySelector('input');
   search.autofocus = true;
   const options = panel.querySelector('.picker-options');
+  const empty = document.createElement('p');
+  empty.className = 'picker-empty';
+  empty.setAttribute('role','status');
+  empty.hidden = true;
+  panel.append(empty);
   // Associate the invoker so light-dismiss does not close the panel before
   // the same button's activation toggles it, accidentally reopening it.
   trigger.setAttribute('popovertarget',panel.id);
@@ -51,6 +56,8 @@ function enhancePicker(select) {
     const matching = [...select.options]
       .filter(option => fold(`${option.text} ${option.value}`).includes(query))
       .sort((a,b) => Number(b.value === select.value) - Number(a.value === select.value));
+    empty.hidden = matching.length !== 0;
+    empty.textContent = dictionaries.get(language)?.noResults || 'No languages found';
     options.replaceChildren(...matching.map(option => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -91,7 +98,7 @@ function enhancePicker(select) {
   panel.addEventListener('keydown',event => {
     if (!['ArrowDown','ArrowUp','Home','End'].includes(event.key)) return;
     if (event.target === search && event.key !== 'ArrowDown') return;
-    const buttons = [...options.children];
+    const buttons = [...options.querySelectorAll('button')];
     if (!buttons.length) return;
     event.preventDefault();
     const index = buttons.indexOf(document.activeElement);
@@ -117,12 +124,20 @@ function syncPickers() { pickers.forEach(picker => picker.sync()); }
 
 
 async function applyLanguage(next,{persist=false}={}) {
+ if (!supported.includes(next)) return;
  const ticket=++request;
  try {
   if(!dictionaries.has(next)) {
    const response=await fetch(new URL(`locales/${next}.json`,base));
    if(!response.ok) throw new Error('Translation unavailable');
-   dictionaries.set(next,await response.json());
+   const loaded = await response.json();
+   // Reject malformed dictionaries before changing any of the current page.
+   if (!loaded || typeof loaded !== 'object' || Array.isArray(loaded)
+       || !['skip','home','heroBody','noResults',...Object.keys(fallback)].every(name =>
+         Object.hasOwn(loaded,name) && typeof loaded[name] === 'string' && loaded[name].trim())) {
+    throw new Error('Invalid translation');
+   }
+   dictionaries.set(next,loaded);
   }
   if(ticket!==request)return;
   const dictionary=dictionaries.get(next);

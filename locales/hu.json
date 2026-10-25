@@ -36,8 +36,9 @@
   "privacy": "Adatvédelem",
   "terms": "Felhasználási feltételek",
   "privacyBody": "A weboldalon nincs regisztráció, kapcsolatfelvételi űrlap, hirdetéskövetés vagy analitika. A választott nyelvet a böngésző tárolja. A tárhelyszolgáltató a weboldal működtetéséhez technikai hozzáférési adatokat kezelhet. Az alkalmazásoknak és termékoldalaknak külön adatvédelmi szabályzatuk van. Az e-maileket és elérhetőségeket a kérdések megválaszolására használjuk. Adatvédelmi kéréssel a cégadatoknál megadott üzemeltetőhöz fordulhatsz.",
-  "termsBody": "A weboldal a FKNCOMPANY-t és szoftverprojektjeit mutatja be. A tervezett termékek és platformok változhatnak; megjelenési dátumot nem ígérünk. A weboldal nem értékesít és nem fogad fizetést. Az alkalmazásvásárlásra, előfizetésre és használatra az adott termék és platform feltételei vonatkoznak. A külső oldalak saját feltételekkel és adatvédelmi szabályzattal rendelkeznek.",
+  "termsBody": "A weboldal a FKNGROUP-t és szoftverprojektjeit mutatja be. A tervezett termékek és platformok változhatnak; megjelenési dátumot nem ígérünk. A weboldal nem értékesít és nem fogad fizetést. Az alkalmazásvásárlásra, előfizetésre és használatra az adott termék és platform feltételei vonatkoznak. A külső oldalak saját feltételekkel és adatvédelmi szabályzattal rendelkeznek.",
   "available": "Elérhető az App Store-ban",
   "releaseNote": "Először iOS. Hamarosan több.",
-  "home": "Kezdőlap"
+  "home": "Kezdőlap",
+  "noResults": "Nem található nyelv"
 }

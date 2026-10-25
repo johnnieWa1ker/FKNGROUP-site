@@ -36,8 +36,9 @@
   "privacy": "Prywatność",
   "terms": "Warunki korzystania",
   "privacyBody": "Ta strona nie ma rejestracji, formularzy, trackerów reklamowych ani analityki. Wybrany język jest zapisywany w przeglądarce. Dostawca hostingu może przetwarzać techniczne dane dostępu, aby udostępniać stronę. Aplikacje i strony produktów mają własne zasady prywatności. Wiadomości e-mail i dane kontaktowe służą do odpowiedzi na zapytania. W sprawach prywatności skontaktuj się z operatorem, korzystając z danych firmy.",
-  "termsBody": "Strona przedstawia FKNCOMPANY i jej projekty. Planowane produkty i platformy mogą się zmienić; nie obiecujemy daty premiery. Strona nie sprzedaje produktów ani nie przyjmuje płatności. Zakupy, subskrypcje i używanie aplikacji podlegają warunkom danego produktu i platformy dystrybucji. Zewnętrzne strony mają własne warunki i zasady prywatności.",
+  "termsBody": "Strona przedstawia FKNGROUP i jej projekty. Planowane produkty i platformy mogą się zmienić; nie obiecujemy daty premiery. Strona nie sprzedaje produktów ani nie przyjmuje płatności. Zakupy, subskrypcje i używanie aplikacji podlegają warunkom danego produktu i platformy dystrybucji. Zewnętrzne strony mają własne warunki i zasady prywatności.",
   "available": "Dostępne w App Store",
   "releaseNote": "Najpierw iOS. Wkrótce więcej.",
-  "home": "Strona główna"
+  "home": "Strona główna",
+  "noResults": "Nie znaleziono języków"
 }

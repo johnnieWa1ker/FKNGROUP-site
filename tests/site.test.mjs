@@ -8,7 +8,7 @@ import {matchLocale,nativeLanguageNames} from '../i18n.js';
 const locales=Object.keys(nativeLanguageNames);
 const company=JSON.parse(await readFile(resolve(root,'data/company.json'),'utf8'));
 test('same 29 locales as FKNGYM, all keys present and nonempty',async()=>{
- const result=await validateSite();assert.equal(result.locales,29);assert.equal(result.keys,41);
+ const result=await validateSite();assert.equal(result.locales,29);assert.equal(result.keys,42);
 });
 test('locale matching preserves Chinese script and regional variants',()=>{
  for(const [input,expected] of [['zh-TW','zh-Hant'],['zh-HK','zh-Hant'],['zh-CN','zh-Hans'],['zh-Hant-CN','zh-Hant'],['pt-PT','pt-BR'],['en-GB','en'],['ru_RU','ru'],['ka-GE','ka'],['nonsense!','null']])assert.equal(matchLocale(input,locales),expected==='null'?null:expected);
@@ -51,6 +51,37 @@ test('exactly four anonymous upcoming product cards, no hidden real project data
 });
 test('development server only resolves public files after path normalization',async()=>{
  const {publicPath}=await import('../scripts/server-path.mjs');
- for(const path of ['/.git/config','/assets/../../.env','/assets/../.git/config','/assets/../scripts/build.mjs','/data/company.json','/package.json'])assert.equal(publicPath(root,path),null,path);
+ for(const path of ['/.git/config','/assets/../../.env','/assets/../.git/config','/assets/../scripts/build.mjs','/data/company.json','/package.json','/assets/.env','/assets/nested/.key','/assets/.git/config'])assert.equal(publicPath(root,path),null,path);
  for(const path of ['/','/company/','/privacy/index.html','/locales/zh-Hant.json','/assets/fkngym.webp'])assert.ok(publicPath(root,path),path);
+});
+
+test('release flags must be booleans and URL credentials are rejected',()=>{
+ const c={...structuredClone(company),privacyConfirmed:true,detailsConfirmed:true};
+ for(const flag of ['privacyConfirmed','detailsConfirmed'])assert.throws(()=>validateCompany({...c,[flag]:'false'},{release:true}));
+ assert.throws(()=>validateCompany({...c,siteUrl:'https://user:secret@example.com/'}));
+ c.products.fkngym.url='https://user:secret@example.com/';
+ assert.throws(()=>validateCompany(c));
+});
+test('legal disclosures are available in Georgian without JavaScript',async()=>{
+ for(const name of ['privacy','terms']) {
+  const html=await readFile(resolve(root,name,'index.html'),'utf8');
+  assert.match(html,/id="legal-ka" lang="ka"/);
+  assert.match(html,/id="legal-en" lang="en"/);
+  assert.match(html,/კომპანიის მონაცემები/);
+  assert.match(html,/Content-Security-Policy/);
+  assert.doesNotMatch(html,/FKNCOMPANY/);
+ }
+});
+test('public asset validation rejects hidden files and symlinks',async()=>{
+ const {mkdtemp,writeFile,symlink,rm}=await import('node:fs/promises');
+ const {tmpdir}=await import('node:os');
+ const {validatePublicTree}=await import('../scripts/validate.mjs');
+ const dir=await mkdtemp(resolve(tmpdir(),'fkn-assets-'));
+ try {
+  await writeFile(resolve(dir,'.env'),'test');
+  await assert.rejects(validatePublicTree(dir),/Unsafe public asset/);
+  await rm(resolve(dir,'.env'));
+  await symlink(resolve(root,'package.json'),resolve(dir,'image.png'));
+  await assert.rejects(validatePublicTree(dir),/Unsafe public asset/);
+ } finally {await rm(dir,{recursive:true,force:true});}
 });

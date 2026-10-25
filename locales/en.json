@@ -36,8 +36,9 @@
   "privacy": "Privacy notice",
   "terms": "Website terms",
   "privacyBody": "This website has no account registration, contact forms, advertising trackers or analytics. It stores your selected language in your browser. The hosting provider may process technical access data to deliver the site. Product websites and apps have separate privacy policies. If you contact us by email, your message and contact details are used to respond to your enquiry. Contact the website operator using the company details for privacy requests.",
-  "termsBody": "This website introduces FKNCOMPANY and its software projects. Planned products and platforms may change; no release date is promised. This website does not sell products or accept payments. Any app purchases, subscriptions and use are subject to the terms shown by the relevant product and distribution platform. External websites have their own terms and privacy policies.",
+  "termsBody": "This website introduces FKNGROUP and its software projects. Planned products and platforms may change; no release date is promised. This website does not sell products or accept payments. Any app purchases, subscriptions and use are subject to the terms shown by the relevant product and distribution platform. External websites have their own terms and privacy policies.",
   "available": "Available on the App Store",
   "releaseNote": "iOS first. More to come.",
-  "home": "Home"
+  "home": "Home",
+  "noResults": "No languages found"
 }
