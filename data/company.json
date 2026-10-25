@@ -1,0 +1,23 @@
+{
+  "brand": "FKNGROUP",
+  "legalName": "FKN COMPANY LLC",
+  "legalForm": "Limited Liability Company",
+  "identificationNumber": "445871628",
+  "legalAddress": "Georgia, Batumi, Shalva Nutsubidze Street, N 1, Apt. 3",
+  "email": "support@fkngroup.pro",
+  "siteUrl": "https://fkngroup.pro/",
+  "detailsConfirmed": true,
+  "privacyConfirmed": true,
+  "products": {
+    "fkngym": {
+      "url": "https://fkngym.com/",
+      "appStoreUrl": null,
+      "status": "development"
+    },
+    "fkncoin": {
+      "url": null,
+      "appStoreUrl": null,
+      "status": "development"
+    }
+  }
+}

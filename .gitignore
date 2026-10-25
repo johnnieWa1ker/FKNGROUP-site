@@ -1,0 +1,46 @@
+# Build output, dependencies, and test artifacts
+/dist/
+node_modules/
+/coverage/
+/.nyc_output/
+/.cache/
+/test-results/
+/playwright-report/
+
+# Local research and working files (same convention as FKNGYM-site)
+/docs/
+/tmp/
+/temp/
+/artifacts/
+/screenshots/
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.swp
+*.swo
+*~
+
+# Machine-specific editor and assistant settings
+/.idea/
+/.vscode/
+/.codex/
+/.claude/
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# Local environment, credentials, and signing files
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.p8
+*.pem
+*.key
+*.p12
+*.pfx
+*.mobileprovision

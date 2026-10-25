@@ -1,0 +1,16 @@
+{
+  "name": "fkngroup-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "sync": "node scripts/render-html.mjs",
+    "sync:check": "node scripts/render-html.mjs --check",
+    "build": "node scripts/build.mjs",
+    "build:release": "node scripts/build.mjs --release",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
