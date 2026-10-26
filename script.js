@@ -158,7 +158,8 @@ async function applyLanguage(next,{persist=false}={}) {
   if(title.dataset.titleKey)title.textContent=`${dictionary[title.dataset.titleKey]} — FKNGROUP`;
   document.querySelector('meta[name="description"]').content=dictionary.heroBody;
   document.querySelector('meta[property="og:description"]').content=dictionary.heroBody;
-  language=next; updateLinks(next); syncPickers();
+  document.querySelectorAll('[data-document-date]').forEach(el=>{el.textContent=new Intl.DateTimeFormat(next,{dateStyle:'long',timeZone:'UTC'}).format(new Date(`${el.dateTime}T00:00:00Z`));});
+  language=next; updateLinks(next); syncPickers(); syncThemeControls();
   if(persist) {
    try {localStorage.setItem(key,next);} catch {}
    const url=new URL(location.href);url.searchParams.set('lang',next);history.replaceState(null,'',url);
@@ -200,3 +201,93 @@ document.addEventListener('visibilitychange', scheduleBrandFlicker);
 window.addEventListener('pagehide', () => clearTimeout(brandTimer));
 window.addEventListener('pageshow', scheduleBrandFlicker);
 scheduleBrandFlicker();
+
+// Anchor destinations stay below the header, including wrapped mobile navigation.
+const siteHeader = document.querySelector('.site-header');
+if (siteHeader) {
+ const updateHeaderOffset = () => document.documentElement.style.setProperty(
+  '--header-offset', `${siteHeader.getBoundingClientRect().height}px`
+ );
+ updateHeaderOffset();
+ new ResizeObserver(updateHeaderOffset).observe(siteHeader);
+}
+
+// Match FKNGYM: system → light → dark, with a shared language/theme control.
+const themeKey = 'fkngroup-site-theme';
+const themeQuery = matchMedia('(prefers-color-scheme: dark)');
+const themeOrder = ['system','light','dark'];
+let themePreference = document.documentElement.dataset.themePreference || 'system';
+const themeLabels = {
+ en: ['Theme','System','Light','Dark','Switch to'],
+ ru: ['Тема','Системная','Светлая','Тёмная','Переключить на'],
+ ka: ['თემა','სისტემური','ღია','მუქი','გადართვა'],
+ ar: ['المظهر','النظام','فاتح','داكن','التبديل إلى'],
+ cs: ['Motiv','Systém','Světlý','Tmavý','Přepnout na'],
+ da: ['Tema','System','Lyst','Mørkt','Skift til'],
+ de: ['Design','System','Hell','Dunkel','Wechseln zu'],
+ el: ['Θέμα','Σύστημα','Φωτεινό','Σκοτεινό','Αλλαγή σε'],
+ es: ['Tema','Sistema','Claro','Oscuro','Cambiar a'],
+ fi: ['Teema','Järjestelmä','Vaalea','Tumma','Vaihda'],
+ fr: ['Thème','Système','Clair','Sombre','Passer à'],
+ he: ['ערכת נושא','מערכת','בהירה','כהה','מעבר אל'],
+ hi: ['थीम','सिस्टम','हल्की','गहरी','बदलें'],
+ hu: ['Téma','Rendszer','Világos','Sötét','Váltás erre'],
+ id: ['Tema','Sistem','Terang','Gelap','Beralih ke'],
+ it: ['Tema','Sistema','Chiaro','Scuro','Passa a'],
+ ja: ['テーマ','システム','ライト','ダーク','切り替え'],
+ ko: ['테마','시스템','라이트','다크','전환'],
+ nl: ['Thema','Systeem','Licht','Donker','Schakel naar'],
+ pl: ['Motyw','Systemowy','Jasny','Ciemny','Przełącz na'],
+ 'pt-BR': ['Tema','Sistema','Claro','Escuro','Mudar para'],
+ ro: ['Temă','Sistem','Luminoasă','Întunecată','Schimbă în'],
+ sv: ['Tema','System','Ljust','Mörkt','Byt till'],
+ th: ['ธีม','ระบบ','สว่าง','มืด','เปลี่ยนเป็น'],
+ tr: ['Tema','Sistem','Açık','Koyu','Şuna geç'],
+ uk: ['Тема','Системна','Світла','Темна','Перемкнути на'],
+ vi: ['Giao diện','Hệ thống','Sáng','Tối','Chuyển sang'],
+ 'zh-Hans': ['主题','系统','浅色','深色','切换为'],
+ 'zh-Hant': ['主題','系統','淺色','深色','切換為'],
+};
+const themeIcons = {
+  system: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="5" width="17" height="12" rx="2.5"/><path d="M9 21h6M12 17v4"/></svg>',
+  light: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4"/></svg>',
+  dark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.2 15.1A8.3 8.3 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"/></svg>'
+};
+
+function syncThemeControls() {
+ const labels = themeLabels[language] || themeLabels.en;
+ const current = themeOrder.indexOf(themePreference);
+ const next = (current + 1) % themeOrder.length;
+ document.querySelectorAll('[data-theme-toggle]').forEach(button => {
+  button.querySelector('.theme-icon').innerHTML = themeIcons[themePreference];
+  button.setAttribute('aria-label', `${labels[0]}: ${labels[current+1]}. ${labels[4]}: ${labels[next+1]}`);
+  button.title = button.getAttribute('aria-label');
+ });
+}
+function applyTheme(preference, persist = true) {
+ themePreference = themeOrder.includes(preference) ? preference : 'system';
+ const dark = themePreference === 'dark' || (themePreference === 'system' && themeQuery.matches);
+ document.documentElement.dataset.themePreference = themePreference;
+ document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+ document.querySelector('meta[name="theme-color"]').content = dark ? '#171c16' : '#f5f5ef';
+ if (persist) { try { localStorage.setItem(themeKey, themePreference); } catch {} }
+ syncThemeControls();
+}
+const languageControl = document.querySelector('.header-actions .language-control');
+if (languageControl) {
+ const group = document.createElement('div');
+ group.className = 'preference-group';
+ const button = document.createElement('button');
+ button.type = 'button';
+ button.className = 'theme-toggle';
+ button.dataset.themeToggle = '';
+ button.innerHTML = '<span class="theme-icon" aria-hidden="true"></span>';
+ button.addEventListener('click', () => applyTheme(themeOrder[(themeOrder.indexOf(themePreference)+1)%themeOrder.length]));
+ languageControl.before(group);
+ group.append(button, languageControl);
+}
+applyTheme(themePreference, false);
+themeQuery.addEventListener('change', () => { if (themePreference === 'system') applyTheme('system', false); });
+window.addEventListener('storage', event => {
+ if (event.key === themeKey || event.key === null) applyTheme(event.newValue || 'system', false);
+});

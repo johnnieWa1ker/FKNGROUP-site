@@ -85,17 +85,14 @@ nav a, .contact-link, .footer-links { font-size: 13px; }
 .product-bottom { flex: 1; }
 .product-bottom > div { flex: 1; }
 .picker-empty { font-size: 14px; color: var(--muted); padding: 12px 0; }
-.document-languages { flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
-.document-languages a { padding: 8px 18px; border: 1px solid var(--line); border-radius: 999px; }
 .legal-copy { scroll-margin-top: 24px; border-top: 1px solid var(--line); padding-top: 32px; margin-top: 40px; }
-.legal-copy h2 { font-size: 32px; letter-spacing: -.025em; }
 .document-date { color: var(--muted); font-size: 13px; margin-top: 12px; }
 .legal-section { margin-top: 28px; max-width: 68ch; }
-.legal-section h3 { font-size: 20px; font-weight: 600; letter-spacing: -.015em; line-height: 1.4; margin-bottom: 10px; }
+.legal-section h2 { font-size: 20px; font-weight: 600; letter-spacing: -.015em; line-height: 1.4; margin-bottom: 10px; }
 .legal-section p { font-size: 16px; line-height: 1.75; }
 .provider-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 28px; }
 .provider-links a { text-decoration: underline; text-underline-offset: 4px; }
-[lang=ka] .legal-section h3 { letter-spacing: 0; }
+[lang=ka] .legal-section h2 { letter-spacing: 0; }
 [dir=rtl] .legal-copy h2, [dir=rtl] .legal-copy h3 { letter-spacing: 0; }
 @media (max-width: 760px) {
   .site-header nav { flex-wrap: wrap; gap: 4px 14px; }
@@ -141,4 +138,71 @@ nav a, .contact-link, .footer-links { font-size: 13px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .brand-neon, .brand-lit .brand-neon { animation: none; color: inherit; text-shadow: none; }
+}
+
+/* Same sticky, translucent header behavior as FKNGYM-site. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  max-width: none;
+  padding-inline: max(5%, calc((100% - 1296px) / 2));
+  background: rgba(245, 245, 239, .86);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+html { scroll-padding-top: calc(var(--header-offset, 101px) + 24px); }
+.skip-link { z-index: 40; }
+@media (max-width: 760px) {
+  html { scroll-padding-top: calc(var(--header-offset, 160px) + 24px); }
+}
+@media print {
+  html { scroll-padding-top: 0; }
+}
+
+/* Shared appearance/language capsule, matching FKNGYM's header controls. */
+.preference-group { display: inline-flex; align-items: center; gap: 3px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: #eaede3; max-width: 100%; }
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; min-height: 40px; flex: 0 0 auto; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; }
+.theme-toggle:hover { background: #dce5c9; }
+.theme-icon, .theme-icon svg { display: block; width: 20px; height: 20px; }
+.preference-group .language-control { border-inline-start: 1px solid var(--line); min-width: 0; }
+.preference-group .picker-trigger { background: transparent; border: 0; min-height: 40px; }
+[data-theme="light"] { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; --paper: #171c16; --ink: #edf1e7; --muted: #b1bba7; --line: #384332; }
+[data-theme="dark"] .wordmark-name { --brand-color: #bddb82; }
+[data-theme="dark"] .site-header { background: rgba(23,28,22,.88); }
+[data-theme="dark"] .brand-mark { background: #d4f36b; color: #22261f; }
+[data-theme="dark"] .visual-ring { border-color: #46543c; }
+[data-theme="dark"] .visual-axis { border-color: #333f2b; }
+[data-theme="dark"] .button { background: #d4f36b; color: #22261f; }
+[data-theme="dark"] .button:hover { background: #e0fc91; }
+[data-theme="dark"] .secondary { background: transparent; color: var(--ink); border-color: #657653; }
+[data-theme="dark"] .secondary:hover { background: #2e3c25; }
+[data-theme="dark"] .product { background: #222b1e; }
+[data-theme="dark"] .coin { background: #293621; }
+[data-theme="dark"] .product-bottom { border-color: var(--line); }
+[data-theme="dark"] .product-bottom p { color: var(--muted); }
+[data-theme="dark"] .art-word { color: #44543a; }
+[data-theme="dark"] .tag, [data-theme="dark"] .status { border-color: #59694c; }
+[data-theme="dark"] .product-number { color: var(--muted); }
+[data-theme="dark"] .status i, [data-theme="dark"] .platform i, [data-theme="dark"] .dot:before { background: #bddb82; }
+[data-theme="dark"] .coin-orbit { border-color: #607747; }
+[data-theme="dark"] .coin-spark { color: #a4bf7f; }
+[data-theme="dark"] .contact-banner { color: #22261f; }
+[data-theme="dark"] .text-link { border-color: #99ac85; }
+[data-theme="dark"] .preference-group, [data-theme="dark"] .picker-search { background: #262f21; }
+[data-theme="dark"] .theme-toggle:hover, [data-theme="dark"] .picker-trigger:hover, [data-theme="dark"] .picker-trigger[aria-expanded="true"] { background: #35462a; border-color: #657653; }
+[data-theme="dark"] .picker-panel { background: #20291c; border-color: #46543c; }
+[data-theme="dark"] .picker-option:hover { background: #2c3924; }
+[data-theme="dark"] .picker-option[aria-pressed="true"] { background: #3a4b2d; color: #e1f6bd; }
+[data-theme="dark"] .picker-search:focus-within { border-color: #bddb82; box-shadow: 0 0 0 3px #35462a; }
+[data-theme="dark"] .skip-link { color: #22261f; }
+[data-theme="dark"] :is(a,button,select):focus-visible { outline-color: #bddb82; }
+@media (max-width: 420px) {
+ .site-header { column-gap: 8px; }
+ .preference-group .language-control { max-width: 116px; }
+ .preference-group .picker-trigger { padding-inline: 7px; gap: 5px; }
+}
+@media print {
+ :root[data-theme="dark"] { --paper: white; --ink: black; --muted: #444; --line: #ccc; color-scheme: light; }
 }

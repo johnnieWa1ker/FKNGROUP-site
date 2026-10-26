@@ -13,7 +13,7 @@ const renderHTML=()=>runFile(process.execPath,[resolve(root,'scripts/render-html
 await renderHTML();let revision=0,queue=Promise.resolve();
 const watcher=watch(root,{recursive:true},(_,filename)=>{
  if(!filename||/^(\.git|dist|node_modules)/.test(filename))return;
- if(filename==='data/company.json'||filename.startsWith('locales/')||(filename.startsWith('scripts/render-html')||filename==='scripts/legal-content.mjs')||filename==='i18n.js')queue=queue.then(()=>renderHTML()).then(()=>revision++).catch(console.error);
+ if(filename==='data/company.json'||filename.startsWith('locales/')||filename.startsWith('scripts/render-html')||filename==='i18n.js')queue=queue.then(()=>renderHTML()).then(()=>revision++).catch(console.error);
  else revision++;
 });
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml'};

@@ -51,11 +51,11 @@ npm run build
 
 - `scripts/render-html.mjs` — source markup for all four pages. Generated HTML is
   committed in `index.html`, `company/`, `privacy/`, and `terms/`.
-- `scripts/legal-content.mjs` — structured English and Georgian legal document drafts,
-  embedded without requiring JavaScript; marketing summaries remain in all 29 locales.
+- Legal document drafts are stored in `locales/` and follow the selected site language.
+  Generated pages include a complete English fallback when JavaScript is unavailable.
 - `styles.css` — responsive layout, RTL support, and reduced-motion styles.
 - `script.js`, `i18n.js` — language selection, dictionary loading, and locale matching.
-- `locales/` — 29 translation dictionaries with 39 matching keys each.
+- `locales/` — 29 translation dictionaries with 59 matching keys each.
 - `data/company.json` — company details, domain, and product availability. The JSON
   file is not copied to `dist/`; public details are embedded in generated HTML.
 - `assets/` — FKNGYM icon and mascot. The hero uses an Icon Composer export; the
@@ -170,3 +170,11 @@ private app repositories or App Store Connect credentials, and has no recurring
 schedule.
 
 Repository: [johnnieWa1ker/FKNGROUP-site](https://github.com/johnnieWa1ker/FKNGROUP-site).
+
+## Appearance
+
+The header theme button cycles System → Light → Dark, as on FKNGYM-site.
+The default follows the operating system; an explicit choice is stored under
+`fkngroup-site-theme`. `theme-init.js` runs before CSS to apply the saved theme
+without a light flash and is included in both preview and deployment allowlists.
+The picker label follows the selected language. All four pages share the palette.

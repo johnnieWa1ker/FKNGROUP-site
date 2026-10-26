@@ -8,7 +8,7 @@ const pages=await renderHTML();
 const destination=resolve(root,'dist');
 await rm(destination,{recursive:true,force:true});await mkdir(destination,{recursive:true});
 // Only reviewed public files enter the deployment artifact.
-for(const file of ['index.html','company','privacy','terms','styles.css','script.js','i18n.js','assets','locales','CNAME','.nojekyll'])await cp(resolve(root,file),resolve(destination,file),{recursive:true});
+for(const file of ['index.html','company','privacy','terms','styles.css','script.js','theme-init.js','i18n.js','assets','locales','CNAME','.nojekyll'])await cp(resolve(root,file),resolve(destination,file),{recursive:true});
 const c=JSON.parse(await readFile(resolve(root,'data/company.json'),'utf8'));
 if(release) {
  const base=c.siteUrl.endsWith('/')?c.siteUrl:`${c.siteUrl}/`;

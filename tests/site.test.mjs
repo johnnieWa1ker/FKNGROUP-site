@@ -8,7 +8,7 @@ import {matchLocale,nativeLanguageNames} from '../i18n.js';
 const locales=Object.keys(nativeLanguageNames);
 const company=JSON.parse(await readFile(resolve(root,'data/company.json'),'utf8'));
 test('same 29 locales as FKNGYM, all keys present and nonempty',async()=>{
- const result=await validateSite();assert.equal(result.locales,29);assert.equal(result.keys,39);
+ const result=await validateSite();assert.equal(result.locales,29);assert.equal(result.keys,59);
 });
 test('locale matching preserves Chinese script and regional variants',()=>{
  for(const [input,expected] of [['zh-TW','zh-Hant'],['zh-HK','zh-Hant'],['zh-CN','zh-Hans'],['zh-Hant-CN','zh-Hant'],['pt-PT','pt-BR'],['en-GB','en'],['ru_RU','ru'],['ka-GE','ka'],['nonsense!','null']])assert.equal(matchLocale(input,locales),expected==='null'?null:expected);
@@ -61,14 +61,23 @@ test('release flags must be booleans and URL credentials are rejected',()=>{
  c.products.fkngym.url='https://user:secret@example.com/';
  assert.throws(()=>validateCompany(c));
 });
-test('legal disclosures are available in Georgian without JavaScript',async()=>{
+test('both legal documents have one complete translatable version in every locale',async()=>{
+ const english=JSON.parse(await readFile(resolve(root,'locales/en.json'),'utf8'));
  for(const name of ['privacy','terms']) {
   const html=await readFile(resolve(root,name,'index.html'),'utf8');
-  assert.match(html,/id="legal-ka" lang="ka"/);
-  assert.match(html,/id="legal-en" lang="en"/);
-  assert.match(html,/კომპანიის მონაცემები/);
-  assert.match(html,/Content-Security-Policy/);
-  assert.doesNotMatch(html,/FKNCOMPANY/);
+  const count=name==='privacy'?6:4;
+  assert.equal((html.match(/class="legal-copy"/g)||[]).length,1);
+  assert.equal((html.match(/class="legal-section"/g)||[]).length,count);
+  assert.doesNotMatch(html,/id="legal-(?:ka|en)"|document-languages|კომპანიის მონაცემები/);
+  for(const locale of locales) {
+   const dictionary=JSON.parse(await readFile(resolve(root,`locales/${locale}.json`),'utf8'));
+   for(let i=1;i<=count;i++)for(const suffix of ['Title','Body']) {
+    const key=`${name}Section${i}${suffix}`;
+    assert.ok(dictionary[key]?.trim(),`${locale}: ${key}`);
+    assert.ok(html.includes(`data-i18n="${key}"`));
+    if(locale!=='en')assert.notEqual(dictionary[key],english[key],`${locale}: untranslated ${key}`);
+   }
+  }
  }
 });
 test('public asset validation rejects hidden files and symlinks',async()=>{
