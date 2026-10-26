@@ -80,7 +80,10 @@ so the English fallback is available directly from a checkout and can be checked
 with `npm run sync:check`.
 
 Build output, dependencies, logs, caches, test artifacts, editor settings, local
-research in `docs/`, environment files, and signing keys are ignored. Environment
+research in `docs/`, reports in `reports/` and root `*_report.md` files, local
+`AGENTS.md` rules, one-off scripts in `scripts/local/` and `scripts/optimize-images.mjs`,
+environment files, and signing keys are ignored. Shared development, build,
+validation, synchronization, and CI tools remain versioned. Environment
 example files may be committed only with placeholder values. Keep private company
 documents and credentials outside public asset and translation directories.
 
@@ -113,7 +116,8 @@ publication and setting `privacyConfirmed` to true on 26 October 2026.
 CI runs tests, a release build, and deployment on every push to `main`, following
 the same flow as FKNGYM-site. Invalid release data fails the build instead of
 reporting success while skipping publication. The earlier review remains recorded
-in `security_best_practices_report.md`. FKNGYM and FKNCOIN remain
+in the local, ignored `security_best_practices_report.md` (not included in a fresh
+checkout). FKNGYM and FKNCOIN remain
 marked as in development. Review these settings when the business details,
 product availability, or data handling change.
 

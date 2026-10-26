@@ -9,6 +9,11 @@ node_modules/
 
 # Local research and working files (same convention as FKNGYM-site)
 /docs/
+/reports/
+/*_report.md
+/AGENTS.md
+/scripts/local/
+/scripts/optimize-images.mjs
 /tmp/
 /temp/
 /artifacts/
