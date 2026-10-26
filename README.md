@@ -51,7 +51,7 @@ npm run build
 
 - `scripts/render-html.mjs` — source markup for all four pages. Generated HTML is
   committed in `index.html`, `company/`, `privacy/`, and `terms/`.
-- Legal document drafts are stored in `locales/` and follow the selected site language.
+- Legal documents are stored in `locales/` and follow the selected site language.
   Generated pages include a complete English fallback when JavaScript is unavailable.
 - `styles.css` — responsive layout, RTL support, and reduced-motion styles.
 - `script.js`, `i18n.js` — language selection, dictionary loading, and locale matching.
@@ -108,12 +108,12 @@ Update `data/company.json` before publication:
   practices. Update every translation first if further disclosures are needed.
 
 The configured business email is `support@fkngroup.pro`. GitHub Pages and iCloud Mail
-were confirmed by the owner during the 25 October 2026 review. `privacyConfirmed`
-is currently false: the revised privacy notice is a draft until actual retention
-practices and international-transfer safeguards are documented and checked.
-Direct release builds deliberately fail until that review is complete. CI runs
-tests and a preview build, reports the publication hold, and skips deployment. See
-`security_best_practices_report.md` for the remaining work. FKNGYM and FKNCOIN remain
+were confirmed by the owner during the 25 October 2026 review. The owner approved
+publication and setting `privacyConfirmed` to true on 26 October 2026.
+CI runs tests, a release build, and deployment on every push to `main`, following
+the same flow as FKNGYM-site. Invalid release data fails the build instead of
+reporting success while skipping publication. The earlier review remains recorded
+in `security_best_practices_report.md`. FKNGYM and FKNCOIN remain
 marked as in development. Review these settings when the business details,
 product availability, or data handling change.
 
@@ -149,9 +149,9 @@ and should not be independently translated or renamed in dictionaries.
 
 The **Pages build deployment** workflow follows the same deployment structure as
 FKNGYM-site: every push to `main` runs tests and builds the website from committed public data.
-When both confirmation flags are true, it uploads `dist/` and deploys to GitHub
-Pages. Otherwise it builds a preview and explicitly skips upload and deployment. It also supports
-manual runs on `main`. This repository uses `npm run build:release` to validate
+After a successful release build, it uploads `dist/` and deploys to GitHub
+Pages. It also supports manual runs on `main`. This repository uses
+`npm run build:release` to validate
 company data and generate the sitemap and indexing rules before deployment.
 No publication variable or private app checkout is required.
 
@@ -178,3 +178,9 @@ The default follows the operating system; an explicit choice is stored under
 `fkngroup-site-theme`. `theme-init.js` runs before CSS to apply the saved theme
 without a light flash and is included in both preview and deployment allowlists.
 The picker label follows the selected language. All four pages share the palette.
+
+## Shared navigation layout
+
+FKNGROUP and FKNGYM use an 80px desktop header and a second navigation row at
+1100px and below. Header and footer height grows with wrapped translations.
+Keep the shared chrome sizing rules in both repositories aligned when editing.

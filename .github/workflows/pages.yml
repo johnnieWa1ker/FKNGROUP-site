@@ -16,8 +16,6 @@ jobs:
   build:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
-    outputs:
-      release_ready: ${{ steps.readiness.outputs.release_ready }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v7
@@ -26,34 +24,14 @@ jobs:
           package-manager-cache: false
       - name: Validate website
         run: npm test
-      - name: Check publication readiness
-        id: readiness
-        run: |
-          node --input-type=module <<'NODE'
-          import { readFileSync, appendFileSync } from 'node:fs';
-          const company = JSON.parse(readFileSync('data/company.json', 'utf8'));
-          const ready = company.detailsConfirmed === true && company.privacyConfirmed === true;
-          appendFileSync(process.env.GITHUB_OUTPUT, `release_ready=${ready}\n`);
-          if (!ready) {
-            const message = 'Publication skipped: company details or privacy handling are not confirmed in data/company.json. Preview validation will still run.';
-            console.log(`::notice::${message}`);
-            appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${message}\n`);
-          }
-          NODE
-      - name: Build preview without publishing
-        if: steps.readiness.outputs.release_ready != 'true'
-        run: npm run build
       - name: Build website from committed public data
-        if: steps.readiness.outputs.release_ready == 'true'
         run: npm run build:release
       - name: Upload Pages artifact
-        if: steps.readiness.outputs.release_ready == 'true'
         uses: actions/upload-pages-artifact@v4
         with:
           path: dist/
 
   deploy:
-    if: needs.build.outputs.release_ready == 'true'
     needs: build
     runs-on: ubuntu-24.04
     permissions:

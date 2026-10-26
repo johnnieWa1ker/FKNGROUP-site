@@ -7,7 +7,7 @@
   "email": "support@fkngroup.pro",
   "siteUrl": "https://fkngroup.pro/",
   "detailsConfirmed": true,
-  "privacyConfirmed": false,
+  "privacyConfirmed": true,
   "products": {
     "fkngym": {
       "url": "https://fkngym.com/",

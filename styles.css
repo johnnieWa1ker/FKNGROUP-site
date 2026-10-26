@@ -206,3 +206,63 @@ html { scroll-padding-top: calc(var(--header-offset, 101px) + 24px); }
 @media print {
  :root[data-theme="dark"] { --paper: white; --ink: black; --muted: #444; --line: #ccc; color-scheme: light; }
 }
+
+/* Shared chrome sizing: 80px desktop; content-sized navigation below 1100px. */
+.site-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  min-height: 80px;
+  height: auto;
+  padding-block: 15px;
+  gap: 4px 24px;
+}
+.site-header > nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0 24px;
+  min-width: 0;
+  width: auto;
+  padding: 0;
+  order: 0;
+}
+.site-header > nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  max-width: 100%;
+  padding-block: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.site-header > .wordmark { flex-shrink: 0; white-space: nowrap; }
+.preference-group { gap: 3px; max-width: 100%; }
+.preference-group .theme-toggle { width: 40px; min-height: 40px; }
+.preference-group .picker-trigger, .preference-group select { min-height: 40px; }
+.site-header .language-control { min-width: 0; max-width: 200px; }
+@media (max-width: 1100px) {
+  .site-header { grid-template-columns: minmax(0, 1fr) auto; padding-block: 12px; }
+  .site-header > nav { grid-column: 1 / -1; grid-row: 2; gap: 0 24px; padding: 0; width: auto; }
+  .site-header > .header-actions { grid-column: 2; grid-row: 1; margin: 0; }
+}
+@media (max-width: 420px) {
+  .site-header { column-gap: 8px; }
+  .site-header .language-control { max-width: clamp(72px, calc(100vw - 270px), 130px); }
+  .site-header > nav { gap: 0 16px; }
+}
+
+.site-header .header-actions { min-width: 0; }
+footer { flex-wrap: wrap; }
+.footer-links { flex-wrap: wrap; min-width: 0; }
+@media (max-width: 1100px) {
+  footer { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+  .footer-links { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (max-width: 420px) {
+  footer { grid-template-columns: minmax(0, 1fr); }
+  .footer-links { grid-row: auto; }
+}
+
+@media print { .site-header, footer { display: none; } }
