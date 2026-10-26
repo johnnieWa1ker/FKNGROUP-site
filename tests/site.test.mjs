@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile,stat} from 'node:fs/promises';
-import {resolve,dirname} from 'node:path';
+import {resolve} from 'node:path';
 import {root,renderHTML,escapeHTML} from '../scripts/render-html.mjs';
 import {validateSite,validateCompany} from '../scripts/validate.mjs';
 import {matchLocale,nativeLanguageNames} from '../i18n.js';
@@ -36,7 +36,10 @@ test('English fallback is up to date and all internal links and assets resolve',
   assert.match(html,/<html lang="en" dir="ltr">/);
   for(const [,url] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
    if(/^(https:|mailto:)/.test(url))continue;
-   const [path,hash]=url.split('#');let file=resolve(dirname(resolve(root,page)),path||page.split('/').at(-1));
+   const target=new URL(url,`https://example.test/${page}`);
+   const hash=decodeURIComponent(target.hash.slice(1));
+   // Query parameters version assets; only the URL pathname identifies the file.
+   let file=resolve(root,decodeURIComponent(target.pathname).slice(1));
    if((await stat(file)).isDirectory())file=resolve(file,'index.html');
    assert.ok((await stat(file)).isFile(),`${page}: ${url}`);
    if(hash)assert.match(await readFile(file,'utf8'),new RegExp(`id="${hash}"`),`${page}: ${url}`);
