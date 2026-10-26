@@ -1,4 +1,4 @@
-import { nativeLanguageNames, matchLocale } from './i18n.js';
+import { nativeLanguageNames, languageFlags, matchLocale } from './i18n.js';
 const base = new URL('.', import.meta.url);
 const key = 'fkngroup-site-language';
 const supported = Object.keys(nativeLanguageNames);
@@ -25,7 +25,7 @@ function enhancePicker(select) {
   const trigger = document.createElement('button');
   trigger.type = 'button';
   trigger.className = 'picker-trigger';
-  trigger.innerHTML = `<span class="picker-symbol" aria-hidden="true">${isLanguage ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/></svg>' : ''}</span><span class="picker-value"></span><svg class="picker-chevron" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m4 6 4 4 4-4"/></svg>`;
+  trigger.innerHTML = '<span class="picker-symbol language-flag" aria-hidden="true"></span><span class="picker-value"></span><svg class="picker-chevron" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m4 6 4 4 4-4"/></svg>';
   const panel = document.createElement('div');
   panel.className = 'picker-panel';
   panel.id = `picker-${pickers.size + 1}`;
@@ -63,7 +63,13 @@ function enhancePicker(select) {
       button.type = 'button';
       button.className = 'picker-option';
       button.setAttribute('aria-pressed',String(option.value === select.value));
-      button.textContent = option.text;
+      const flag = document.createElement('span');
+      flag.className = 'language-flag';
+      flag.setAttribute('aria-hidden','true');
+      flag.textContent = languageFlags[option.value] || '';
+      const name = document.createElement('span');
+      name.textContent = nativeLanguageNames[option.value] || option.text;
+      button.append(flag,name);
       if (isLanguage) button.lang = option.value;
       button.dir = 'auto';
       button.addEventListener('click',() => {
@@ -109,8 +115,9 @@ function enhancePicker(select) {
   document.addEventListener('scroll',() => { if (panel.matches(':popover-open')) position(); },true);
   function sync() {
     const selected = select.selectedOptions[0];
-    trigger.querySelector('.picker-value').textContent = selected?.text || '';
-    trigger.setAttribute('aria-label',`${label.textContent}: ${selected?.text || ''}`);
+    trigger.querySelector('.picker-value').textContent = nativeLanguageNames[selected?.value] || '';
+    trigger.querySelector('.picker-symbol').textContent = languageFlags[selected?.value] || '';
+    trigger.setAttribute('aria-label',`${label.textContent}: ${nativeLanguageNames[selected?.value] || ''}`);
     trigger.disabled = select.disabled;
     panel.setAttribute('aria-label',label.textContent);
     panel.querySelector('.picker-heading').textContent = label.textContent;
@@ -168,3 +175,28 @@ document.querySelectorAll('[data-language-select]').forEach(el=>el.addEventListe
 document.querySelectorAll('[data-language-select]').forEach(enhancePicker);
 const candidates=[new URL(location.href).searchParams.get('lang'),saved,...navigator.languages];
 applyLanguage(candidates.map(value=>matchLocale(value,supported)).find(Boolean)||'en');
+
+// Alternate stable dark/green phases with the same neon transition in reverse.
+const reducedBrandMotion = matchMedia('(prefers-reduced-motion: reduce)');
+let brandTimer;
+function scheduleBrandFlicker() {
+ clearTimeout(brandTimer);
+ document.documentElement.classList.remove('brand-flickering');
+ if (reducedBrandMotion.matches) {
+  document.documentElement.classList.remove('brand-lit');
+  return;
+ }
+ if (document.hidden) return;
+ brandTimer = setTimeout(() => {
+  document.documentElement.classList.add('brand-flickering');
+  brandTimer = setTimeout(() => {
+   document.documentElement.classList.toggle('brand-lit');
+   scheduleBrandFlicker();
+  }, 2100);
+ }, 6000 + Math.random() * 12000);
+}
+reducedBrandMotion.addEventListener('change', scheduleBrandFlicker);
+document.addEventListener('visibilitychange', scheduleBrandFlicker);
+window.addEventListener('pagehide', () => clearTimeout(brandTimer));
+window.addEventListener('pageshow', scheduleBrandFlicker);
+scheduleBrandFlicker();

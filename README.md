@@ -41,7 +41,7 @@ npm run build
 - `sync` regenerates the English HTML fallback from company data and translations.
 - `sync:check` fails when the checked-in HTML is stale.
 - `test` checks translations, locale matching, company data validation, generated
-  HTML, local links, product placeholders, and development server path handling.
+  HTML, local links, portfolio content, and development server path handling.
 - `build` validates the site and copies allowlisted public files to `dist/` for
   preview. It does not require a sibling app checkout or credentials.
 - `build:release` additionally requires complete, confirmed company information
@@ -55,7 +55,7 @@ npm run build
   embedded without requiring JavaScript; marketing summaries remain in all 29 locales.
 - `styles.css` — responsive layout, RTL support, and reduced-motion styles.
 - `script.js`, `i18n.js` — language selection, dictionary loading, and locale matching.
-- `locales/` — 29 translation dictionaries with 42 matching keys each.
+- `locales/` — 29 translation dictionaries with 39 matching keys each.
 - `data/company.json` — company details, domain, and product availability. The JSON
   file is not copied to `dist/`; public details are embedded in generated HTML.
 - `assets/` — FKNGYM icon and mascot. The hero uses an Icon Composer export; the
@@ -65,9 +65,11 @@ npm run build
   Original PNGs are kept locally in the ignored `docs/asset-originals/` directory;
   the deployed site does not include them.
 
-The FKNCOIN artwork is a CSS placeholder. The four unannounced products use
-illustrative names and artwork; no unreleased names are stored in the source.
-The public brand is FKNGROUP, with the first four letters highlighted. Company
+The unapproved FKNCOIN artwork is blurred in both the hero and product card.
+The portfolio shows only FKNGYM and FKNCOIN; unreleased product cards are omitted.
+Hero tiles have fixed square dimensions. The language picker includes decorative
+country flags alongside native language names, including the native-select fallback.
+The public brand is FKNGROUP, with FKN highlighted and G occasionally flickering in the same color. Company
 registration details consistently use the legal name FKN COMPANY LLC.
 
 ## Repository contents

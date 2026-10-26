@@ -8,7 +8,7 @@ import {matchLocale,nativeLanguageNames} from '../i18n.js';
 const locales=Object.keys(nativeLanguageNames);
 const company=JSON.parse(await readFile(resolve(root,'data/company.json'),'utf8'));
 test('same 29 locales as FKNGYM, all keys present and nonempty',async()=>{
- const result=await validateSite();assert.equal(result.locales,29);assert.equal(result.keys,42);
+ const result=await validateSite();assert.equal(result.locales,29);assert.equal(result.keys,39);
 });
 test('locale matching preserves Chinese script and regional variants',()=>{
  for(const [input,expected] of [['zh-TW','zh-Hant'],['zh-HK','zh-Hant'],['zh-CN','zh-Hans'],['zh-Hant-CN','zh-Hant'],['pt-PT','pt-BR'],['en-GB','en'],['ru_RU','ru'],['ka-GE','ka'],['nonsense!','null']])assert.equal(matchLocale(input,locales),expected==='null'?null:expected);
@@ -43,11 +43,10 @@ test('English fallback is up to date and all internal links and assets resolve',
   }
  }
 });
-test('exactly four anonymous upcoming product cards, no hidden real project data',async()=>{
+test('portfolio shows the two announced products without teaser or Android badges',async()=>{
  const html=await readFile(resolve(root,'index.html'),'utf8');
- assert.equal((html.match(/<article class="upcoming">/g)||[]).length,4);
- assert.equal((html.match(/<b>FKN — —<\/b>/g)||[]).length,4);
- assert.doesNotMatch(html,/\b(secretName|unannouncedName|data-project-name)\b/);
+ assert.equal((html.match(/<article class="product /g)||[]).length,2);
+ assert.doesNotMatch(html,/class="upcoming|data-i18n="(?:unannounced|futureBody|android)"|iOS → ANDROID/);
 });
 test('development server only resolves public files after path normalization',async()=>{
  const {publicPath}=await import('../scripts/server-path.mjs');

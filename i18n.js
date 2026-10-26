@@ -20,3 +20,12 @@ export function matchLocale(requested, supported) {
   return supported.find(value => value === locale.language)
     || supported.find(value => value.split('-')[0] === locale.language) || null;
 }
+
+// Decorative country cues; language names remain the accessible labels.
+export const languageFlags = {
+ ar: '🇸🇦', cs: '🇨🇿', da: '🇩🇰', de: '🇩🇪', el: '🇬🇷', en: '🇬🇧',
+ es: '🇪🇸', fi: '🇫🇮', fr: '🇫🇷', he: '🇮🇱', hi: '🇮🇳', hu: '🇭🇺',
+ id: '🇮🇩', it: '🇮🇹', ja: '🇯🇵', ka: '🇬🇪', ko: '🇰🇷', nl: '🇳🇱',
+ pl: '🇵🇱', 'pt-BR': '🇧🇷', ro: '🇷🇴', ru: '🇷🇺', sv: '🇸🇪',
+ th: '🇹🇭', tr: '🇹🇷', uk: '🇺🇦', vi: '🇻🇳', 'zh-Hans': '🇨🇳', 'zh-Hant': '🇹🇼',
+};
